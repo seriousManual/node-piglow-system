@@ -1,0 +1,40 @@
+{
+  "name": "piglow-system",
+  "version": "0.0.1",
+  "description": "several visualisation utilities for your system",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zaphod1984/node-piglow-system.git"
+  },
+  "keywords": [
+    "raspberry pi",
+    "pimoroni",
+    "piglow",
+    "system load",
+    "system utilization",
+    "cpu"
+  ],
+  "contributors": [
+    "Manuel Ernst <zaphod84@gmx.de>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "piglow": ">0.6.7",
+    "optimist": "~0.6.0",
+    "cputilization": "~0.1.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.13.0",
+    "chai": "~1.7.2",
+    "sinon": "~1.7.3",
+    "sandboxed-module": "~0.2.2"
+  },
+  "bin": {
+    "piglow-load": "bin/piglowLoad.js"
+  },
+  "preferGlobal": true,
+  "scripts": {
+    "test": "./node_modules/.bin/mocha tests"
+  }
+}
