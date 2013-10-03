@@ -1,25 +1,36 @@
-# node-piglow-load
+# node-piglow-system
 
-[![Build Status](https://travis-ci.org/zaphod1984/node-piglow-load.png)](https://travis-ci.org/zaphod1984/node-piglow-load)
+[![Build Status](https://travis-ci.org/zaphod1984/node-piglow-system.png)](https://travis-ci.org/zaphod1984/node-piglow-system)
 
-[![NPM](https://nodei.co/npm/piglow-load.png)](https://nodei.co/npm/piglow-load/)
+[![NPM](https://nodei.co/npm/piglow-system.png)](https://nodei.co/npm/piglow-system/)
 
-[![NPM](https://nodei.co/npm-dl/piglow-load.png?months=3)](https://nodei.co/npm/piglow-load/)
+[![NPM](https://nodei.co/npm-dl/piglow-system.png?months=3)](https://nodei.co/npm/piglow-system/)
 
-node-piglow-load visualizes the load of the system.   
+node-piglow-system visualizes several metrics of your system via the pimoroni piglow.
 details for setting up your system can be found on the [node-piglow](https://github.com/zaphod1984/node-piglow) page.
 
 ## Installation
 
 ```
-$ npm install piglow-load -g
+$ npm install piglow-system -g
 ```
 
+## Modules
+
+node-piglow-system is a collection of several modules that visualize system metrics.
+currently the following modules are available:
+
+- **load** visualizes the system load. 1Minute, 5Minute and 15Minute load is distributed onto the three arms
+- **cpu** visualizes the current cpu utilization
+
 ## Run
+
+
 
 ### Command Line
 ```
 $ piglow-load [-i interval] [-b brightness]
+$ piglow-cpu [-i interval] [-b brightness]
 ```
 
 Parameters:
@@ -29,9 +40,11 @@ Parameters:
 
 #### End
 
-End the `piglow-load` process via `ctr+c` or via sending a `SIGINT` signal, it will reset the piglow LEDs then.
+End the process via `ctr+c` or via sending a `SIGINT` signal, it will reset the piglow LEDs then.
 
 ### From your program:
+
+each of the modules follows the exact same api (load is used as the example):
 
 ```javascript
 var piglowLoad = require('piglow-load');
@@ -56,3 +69,4 @@ function end() {
 ## made with
 - **node-piglow** https://github.com/zaphod1984/node-piglow
 - **optimist** https://github.com/substack/node-optimist
+- **cputilization** https://github.com/zaphod1984/cputilization
