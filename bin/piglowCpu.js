@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var piglowLoad = require('../').load;
+var piglowCpu = require('../').cpu;
 var binRun = require('./generic');
 
-binRun(piglowLoad);
+binRun(piglowCpu);

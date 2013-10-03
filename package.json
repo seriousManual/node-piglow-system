@@ -31,7 +31,8 @@
     "sandboxed-module": "~0.2.2"
   },
   "bin": {
-    "piglow-load": "bin/piglowLoad.js"
+    "piglow-load": "bin/piglowLoad.js",
+    "piglow-cpu": "bin/piglowCpu.js"
   },
   "preferGlobal": true,
   "scripts": {
