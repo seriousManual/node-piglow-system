@@ -17,7 +17,7 @@ function binRun(client) {
     }
 
     if(argv.h || argv.help) {
-        showHelp();
+        showHelp(client.name);
         process.exit(0);
     }
 
@@ -35,14 +35,14 @@ function showVersion() {
     console.log(require('../package.json').version);
 }
 
-function showHelp() {
+function showHelp(name) {
     var help = [
-        'Usage: piglow-load [options]',
+        'Usage: piglow-' + name + ' [options]',
         '',
         'Options:',
         '  -b, --brightness: the maximum brightness of the LEDs (default: 100)',
         '  -i, --interval:   the refresh interval (default: 1000)',
-        '  -v, --version:    the version of piglow-load',
+        '  -v, --version:    the version of piglow-' + name,
         '  -h, --help:       this help'
     ];
 
