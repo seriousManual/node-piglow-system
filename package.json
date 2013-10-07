@@ -2,6 +2,7 @@
   "name": "piglow-system",
   "version": "0.1.2",
   "description": "several visualisation utilities for your system",
+  "author": "Manuel Ernst <zaphod84@gmx.de>",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -14,9 +15,6 @@
     "system load",
     "system utilization",
     "cpu"
-  ],
-  "contributors": [
-    "Manuel Ernst <zaphod84@gmx.de>"
   ],
   "license": "MIT",
   "dependencies": {
