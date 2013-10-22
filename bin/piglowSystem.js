@@ -35,7 +35,7 @@ if(argv.b || argv.brightness) {
 invoke();
 
 process.on('SIGINT', function end() {
-    clients[currentCliendId].stop();
+    clients[currentCliendId].stop(function() {});
 
     clearTimeout(i1);
     clearTimeout(i2);
@@ -51,7 +51,7 @@ function invoke() {
     myClient.start(options);
 
     i1 = setTimeout(function() {
-        myClient.stop();
+        myClient.stop(function() {});
 
         i2 = setTimeout(invoke, pauseTime);
     }, switchInterval);
