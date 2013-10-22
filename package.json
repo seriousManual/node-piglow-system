@@ -30,7 +30,8 @@
   },
   "bin": {
     "piglow-load": "bin/piglowLoad.js",
-    "piglow-cpu": "bin/piglowCpu.js"
+    "piglow-cpu": "bin/piglowCpu.js",
+    "piglow-system": "bin/piglowSystem.js"
   },
   "preferGlobal": true,
   "scripts": {
