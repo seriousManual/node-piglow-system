@@ -1,4 +1,4 @@
 # TODO
 
 * documentation
-* tests for rotate
+* help params for rotate
