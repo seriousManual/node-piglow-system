@@ -22,6 +22,7 @@ currently the following modules are available:
 
 - **load** visualizes the system load. 1Minute, 5Minute and 15Minute load is distributed onto the three arms
 - **cpu** visualizes the current cpu utilization
+- **memory** visualizes the current memory utilization
 - **system** runs all the above modules consecutively
 
 ## Run
@@ -32,6 +33,7 @@ currently the following modules are available:
 ```
 $ piglow-load [-i interval] [-b brightness]
 $ piglow-cpu [-i interval] [-b brightness]
+$ piglow-memory [-i interval] [-b brightness]
 $ piglow-system [-i interval] [-b brightness] [-s switchInterval]
 ```
 
