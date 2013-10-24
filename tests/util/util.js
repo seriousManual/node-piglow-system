@@ -81,14 +81,25 @@ function createPiGlowMock() {
     };
 }
 
-function createOsMock(result) {
-    var i = 0;
+function createOsMock(loadValues, totalmem, freeMemValues) {
+    var loadIndex = 0;
+    var memIndex = 0;
 
     return {
         loadavg: function() {
-            var res = result[i];
+            var res = loadValues[loadIndex];
 
-            i = (++i) % result.length;
+            loadIndex = (++loadIndex) % loadValues.length;
+
+            return res;
+        },
+        totalmem: function() {
+            return totalmem;
+        },
+        freemem: function() {
+            var res = freeMemValues[memIndex];
+
+            memIndex = (++memIndex) % freeMemValues.length;
 
             return res;
         }
