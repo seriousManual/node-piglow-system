@@ -1,6 +1,6 @@
 {
   "name": "piglow-system",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "several visualisation utilities for your system",
   "author": "Manuel Ernst <zaphod84@gmx.de>",
   "main": "index.js",
