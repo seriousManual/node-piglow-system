@@ -1,6 +1,4 @@
 # TODO
 
-* tests for cpu
-* rotate
 * documentation
-* pause parameter
+* tests for rotate

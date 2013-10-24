@@ -1,3 +1,34 @@
+function createCPUMock(samples) {
+    var e = {
+        _handler: null,
+        on: function(type, handler) {
+            this._handler = handler;
+        }
+    };
+
+    return function(o) {
+        var interval = o.interval;
+        var samplePointer = 0;
+
+        function runner() {
+            if(e._handler) {
+                e._handler({
+                    percentageBusy: function() {
+                        return samples[samplePointer++ % samples.length];
+                    }
+                });
+            }
+
+            var duate = interval - ((new Date()).getMilliseconds() % interval);
+            setTimeout(runner, duate);
+        }
+
+        runner();
+
+        return e;
+    };
+}
+
 function createCreateInterface(error, mock) {
     var ret = function(callback) {
         if(error) {
@@ -57,3 +88,4 @@ function createOsMock(result) {
 module.exports.createCreateInterface = createCreateInterface;
 module.exports.createPiGlowMock = createPiGlowMock;
 module.exports.createOsMock = createOsMock;
+module.exports.createCPUMock = createCPUMock;
