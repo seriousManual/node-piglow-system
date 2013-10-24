@@ -1,3 +1,28 @@
+var sinon = require('sinon');
+
+function createModuleMock() {
+    var started = false;
+
+    return {
+        start: sinon.spy(function(o, callback) {
+            if(!started) {
+                started = true;
+                callback();
+            }
+        }),
+        stop: sinon.spy(function(callback) {
+            callback();
+        })
+    };
+}
+
+function createSystemMock() {
+    return {
+        cpu: createModuleMock(),
+        load: createModuleMock()
+    };
+}
+
 function createCPUMock(samples) {
     var e = {
         _handler: null,
@@ -47,24 +72,9 @@ function createPiGlowMock() {
     return {
         "startTransaction": function() {},
         "commitTransaction": function() {},
-        "l_0_0": 0,
-        "l_0_1": 0,
-        "l_0_2": 0,
-        "l_0_3": 0,
-        "l_0_4": 0,
-        "l_0_5": 0,
-        "l_1_0": 0,
-        "l_1_1": 0,
-        "l_1_2": 0,
-        "l_1_3": 0,
-        "l_1_4": 0,
-        "l_1_5": 0,
-        "l_2_0": 0,
-        "l_2_1": 0,
-        "l_2_2": 0,
-        "l_2_3": 0,
-        "l_2_4": 0,
-        "l_2_5": 0,
+        "l_0_0": 0, "l_0_1": 0, "l_0_2": 0, "l_0_3": 0, "l_0_4": 0, "l_0_5": 0,
+        "l_1_0": 0, "l_1_1": 0, "l_1_2": 0, "l_1_3": 0, "l_1_4": 0, "l_1_5": 0,
+        "l_2_0": 0, "l_2_1": 0, "l_2_2": 0, "l_2_3": 0, "l_2_4": 0, "l_2_5": 0,
         "data": function() {
             return JSON.parse(JSON.stringify(this));
         }
@@ -89,3 +99,4 @@ module.exports.createCreateInterface = createCreateInterface;
 module.exports.createPiGlowMock = createPiGlowMock;
 module.exports.createOsMock = createOsMock;
 module.exports.createCPUMock = createCPUMock;
+module.exports.createSystemMock = createSystemMock;
