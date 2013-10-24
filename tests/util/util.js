@@ -99,4 +99,5 @@ module.exports.createCreateInterface = createCreateInterface;
 module.exports.createPiGlowMock = createPiGlowMock;
 module.exports.createOsMock = createOsMock;
 module.exports.createCPUMock = createCPUMock;
+module.exports.createModuleMock = createModuleMock;
 module.exports.createSystemMock = createSystemMock;

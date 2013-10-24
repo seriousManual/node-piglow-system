@@ -10,11 +10,13 @@ describe('integrationSystem', function() {
         var clock = sinon.useFakeTimers();
         var callback = sinon.stub();
 
-        var systemMock = testUtils.createSystemMock();
+        var loadMock = testUtils.createModuleMock();
+        var cpuMock = testUtils.createModuleMock();
 
         var piglowSystem = sandboxed.require('../lib/modules/system', {
             requires: {
-                '../../index': systemMock
+                './load': loadMock,
+                './cpu': cpuMock
             }
         });
 
@@ -24,10 +26,11 @@ describe('integrationSystem', function() {
 
         expect(callback.callCount).to.equal(1);
 
-        expect(systemMock.cpu.start.callCount).to.equal(1);
-        expect(systemMock.load.start.callCount).to.equal(2);
-        expect(systemMock.cpu.stop.callCount).to.equal(1);
-        expect(systemMock.load.stop.callCount).to.equal(1);
+        expect(cpuMock.start.callCount).to.equal(1);
+        expect(cpuMock.stop.callCount).to.equal(1);
+
+        expect(loadMock.start.callCount).to.equal(2);
+        expect(loadMock.stop.callCount).to.equal(1);
 
         clock.restore();
     });
@@ -36,11 +39,13 @@ describe('integrationSystem', function() {
         var clock = sinon.useFakeTimers();
         var callback = sinon.stub();
 
-        var systemMock = testUtils.createSystemMock();
+        var loadMock = testUtils.createModuleMock();
+        var cpuMock = testUtils.createModuleMock();
 
         var piglowSystem = sandboxed.require('../lib/modules/system', {
             requires: {
-                '../../index': systemMock
+                './load': loadMock,
+                './cpu': cpuMock
             }
         });
 
@@ -50,10 +55,11 @@ describe('integrationSystem', function() {
 
         expect(callback.callCount).to.equal(1);
 
-        expect(systemMock.cpu.start.callCount).to.equal(3);
-        expect(systemMock.load.start.callCount).to.equal(3);
-        expect(systemMock.cpu.stop.callCount).to.equal(2);
-        expect(systemMock.load.stop.callCount).to.equal(3);
+        expect(cpuMock.start.callCount).to.equal(3);
+        expect(cpuMock.stop.callCount).to.equal(2);
+
+        expect(loadMock.start.callCount).to.equal(3);
+        expect(loadMock.stop.callCount).to.equal(3);
 
         clock.restore();
     });
@@ -62,11 +68,13 @@ describe('integrationSystem', function() {
         var clock = sinon.useFakeTimers();
         var callback = sinon.stub();
 
-        var systemMock = testUtils.createSystemMock();
+        var loadMock = testUtils.createModuleMock();
+        var cpuMock = testUtils.createModuleMock();
 
         var piglowSystem = sandboxed.require('../lib/modules/system', {
             requires: {
-                '../../index': systemMock
+                './load': loadMock,
+                './cpu': cpuMock
             }
         });
 
@@ -76,10 +84,11 @@ describe('integrationSystem', function() {
 
         expect(callback.callCount).to.equal(1);
 
-        expect(systemMock.cpu.start.callCount).to.equal(1);
-        expect(systemMock.load.start.callCount).to.equal(1);
-        expect(systemMock.cpu.stop.callCount).to.equal(0);
-        expect(systemMock.load.stop.callCount).to.equal(1);
+        expect(cpuMock.start.callCount).to.equal(1);
+        expect(cpuMock.stop.callCount).to.equal(0);
+
+        expect(loadMock.start.callCount).to.equal(1);
+        expect(loadMock.stop.callCount).to.equal(1);
 
         clock.restore();
     });
@@ -89,11 +98,13 @@ describe('integrationSystem', function() {
         var callbackStart = sinon.stub();
         var callbackStop = sinon.stub();
 
-        var systemMock = testUtils.createSystemMock();
+        var loadMock = testUtils.createModuleMock();
+        var cpuMock = testUtils.createModuleMock();
 
         var piglowSystem = sandboxed.require('../lib/modules/system', {
             requires: {
-                '../../index': systemMock
+                './load': loadMock,
+                './cpu': cpuMock
             }
         });
 
@@ -106,10 +117,11 @@ describe('integrationSystem', function() {
         expect(callbackStart.callCount).to.equal(1);
         expect(callbackStop.callCount).to.equal(1);
 
-        expect(systemMock.cpu.start.callCount).to.equal(1);
-        expect(systemMock.load.start.callCount).to.equal(1);
-        expect(systemMock.cpu.stop.callCount).to.equal(1);
-        expect(systemMock.load.stop.callCount).to.equal(1);
+        expect(cpuMock.start.callCount).to.equal(1);
+        expect(cpuMock.stop.callCount).to.equal(1);
+
+        expect(loadMock.start.callCount).to.equal(1);
+        expect(loadMock.stop.callCount).to.equal(1);
 
         clock.restore();
     });
