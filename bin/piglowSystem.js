@@ -24,7 +24,7 @@ if(argv.i || argv.interval)       options.interval       = argv.i || argv.interv
 if(argv.b || argv.brightness)     options.brightness     = argv.b || argv.brightness;
 if(argv.p || argv.pause)          options.pause          = argv.p || argv.pause;
 if(argv.s || argv.switchInterval) options.switchInterval = argv.s || argv.switchInterval;
-console.log(options);
+
 piglowSystem.start(options, function() {});
 
 process.on('SIGINT', function end() {
