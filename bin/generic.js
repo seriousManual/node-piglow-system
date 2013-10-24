@@ -21,7 +21,7 @@ function binRun(client) {
         process.exit(0);
     }
 
-    client.start(options);
+    client.start(options, function() {});
 
     process.on('SIGINT', function end() {
         client.stop(function() {
