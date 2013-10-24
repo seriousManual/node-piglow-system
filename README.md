@@ -34,14 +34,21 @@ currently the following modules are available:
 $ piglow-load [-i interval] [-b brightness]
 $ piglow-cpu [-i interval] [-b brightness]
 $ piglow-memory [-i interval] [-b brightness]
-$ piglow-system [-i interval] [-b brightness] [-s switchInterval]
+$ piglow-system [-lcm] [-i interval] [-b brightness] [-s switchInterval] [-p pause]
 ```
 
-Parameters:
+All parameters are strictly optional.
+
+Parameters (all modules):
 
 - `interval`: specifies the refresh interval in milliseconds. default: 5000ms
 - `brightness`: specifies how bright the LED should shine. range: 0-255, default: 10 (fyi: 255 is freakin' bright)
-- `switchInterval`: specifies the time that lies between two module calls, default: 10000
+
+Parameters (system):
+
+- `lcm`: each letter stands for one of the diagnostic modules. use the parameter to choose which should be used. if ommitted all will be used
+- `switchInterval`: specifies the time a module call lasts, default: 10000
+- `pause`: specifies the pause time between to module calls, default: 1000
 
 #### End
 
