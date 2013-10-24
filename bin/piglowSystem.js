@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var piglowCpu = require('../').system;
+var piglowSystem = require('../').system;
 var binRun = require('./generic');
 
-binRun(piglowCpu);
+binRun(piglowSystem);
