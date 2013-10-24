@@ -4,7 +4,7 @@ var argv = require('optimist').argv;
 var piglowSystem = require('../lib/modules/system');
 
 
-var options = {modules: []};
+var options = {modules: {}};
 
 if(argv.v || argv.version) {
     showVersion();
@@ -16,15 +16,15 @@ if(argv.h || argv.help) {
     process.exit(0);
 }
 
-if(argv.l)                        options.modules.push('l');
-if(argv.c)                        options.modules.push('c');
-if(argv.m)                        options.modules.push('m');
+if(argv.l)                        options.modules.l = true;
+if(argv.c)                        options.modules.c = true;
+if(argv.m)                        options.modules.m = true;
 
 if(argv.i || argv.interval)       options.interval       = argv.i || argv.interval;
 if(argv.b || argv.brightness)     options.brightness     = argv.b || argv.brightness;
 if(argv.p || argv.pause)          options.pause          = argv.p || argv.pause;
 if(argv.s || argv.switchInterval) options.switchInterval = argv.s || argv.switchInterval;
-
+console.log(options);
 piglowSystem.start(options, function() {});
 
 process.on('SIGINT', function end() {
