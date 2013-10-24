@@ -12,9 +12,11 @@ describe('integrationSystem', function() {
 
         var loadMock = testUtils.createModuleMock();
         var cpuMock = testUtils.createModuleMock();
+        var memoryMock = testUtils.createModuleMock();
 
         var piglowSystem = sandboxed.require('../lib/modules/system', {
             requires: {
+                './memory': memoryMock,
                 './load': loadMock,
                 './cpu': cpuMock
             }
@@ -26,10 +28,13 @@ describe('integrationSystem', function() {
 
         expect(callback.callCount).to.equal(1);
 
-        expect(cpuMock.start.callCount).to.equal(1);
-        expect(cpuMock.stop.callCount).to.equal(1);
+        expect(memoryMock.start.callCount).to.equal(1);
+        expect(memoryMock.stop.callCount).to.equal(1);
 
-        expect(loadMock.start.callCount).to.equal(2);
+        expect(cpuMock.start.callCount).to.equal(1);
+        expect(cpuMock.stop.callCount).to.equal(0);
+
+        expect(loadMock.start.callCount).to.equal(1);
         expect(loadMock.stop.callCount).to.equal(1);
 
         clock.restore();
@@ -41,9 +46,11 @@ describe('integrationSystem', function() {
 
         var loadMock = testUtils.createModuleMock();
         var cpuMock = testUtils.createModuleMock();
+        var memoryMock = testUtils.createModuleMock();
 
         var piglowSystem = sandboxed.require('../lib/modules/system', {
             requires: {
+                './memory': memoryMock,
                 './load': loadMock,
                 './cpu': cpuMock
             }
@@ -55,11 +62,14 @@ describe('integrationSystem', function() {
 
         expect(callback.callCount).to.equal(1);
 
-        expect(cpuMock.start.callCount).to.equal(3);
-        expect(cpuMock.stop.callCount).to.equal(2);
+        expect(memoryMock.start.callCount).to.equal(2);
+        expect(memoryMock.stop.callCount).to.equal(2);
 
-        expect(loadMock.start.callCount).to.equal(3);
-        expect(loadMock.stop.callCount).to.equal(3);
+        expect(cpuMock.start.callCount).to.equal(2);
+        expect(cpuMock.stop.callCount).to.equal(1);
+
+        expect(loadMock.start.callCount).to.equal(2);
+        expect(loadMock.stop.callCount).to.equal(2);
 
         clock.restore();
     });
@@ -70,9 +80,11 @@ describe('integrationSystem', function() {
 
         var loadMock = testUtils.createModuleMock();
         var cpuMock = testUtils.createModuleMock();
+        var memoryMock = testUtils.createModuleMock();
 
         var piglowSystem = sandboxed.require('../lib/modules/system', {
             requires: {
+                './memory': memoryMock,
                 './load': loadMock,
                 './cpu': cpuMock
             }
@@ -84,7 +96,10 @@ describe('integrationSystem', function() {
 
         expect(callback.callCount).to.equal(1);
 
-        expect(cpuMock.start.callCount).to.equal(1);
+        expect(memoryMock.start.callCount).to.equal(1);
+        expect(memoryMock.stop.callCount).to.equal(0);
+
+        expect(cpuMock.start.callCount).to.equal(0);
         expect(cpuMock.stop.callCount).to.equal(0);
 
         expect(loadMock.start.callCount).to.equal(1);
@@ -100,9 +115,11 @@ describe('integrationSystem', function() {
 
         var loadMock = testUtils.createModuleMock();
         var cpuMock = testUtils.createModuleMock();
+        var memoryMock = testUtils.createModuleMock();
 
         var piglowSystem = sandboxed.require('../lib/modules/system', {
             requires: {
+                './memory': memoryMock,
                 './load': loadMock,
                 './cpu': cpuMock
             }
@@ -117,8 +134,11 @@ describe('integrationSystem', function() {
         expect(callbackStart.callCount).to.equal(1);
         expect(callbackStop.callCount).to.equal(1);
 
-        expect(cpuMock.start.callCount).to.equal(1);
-        expect(cpuMock.stop.callCount).to.equal(1);
+        expect(memoryMock.start.callCount).to.equal(1);
+        expect(memoryMock.stop.callCount).to.equal(1);
+
+        expect(cpuMock.start.callCount).to.equal(0);
+        expect(cpuMock.stop.callCount).to.equal(0);
 
         expect(loadMock.start.callCount).to.equal(1);
         expect(loadMock.stop.callCount).to.equal(1);
