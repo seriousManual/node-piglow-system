@@ -23,6 +23,7 @@ currently the following modules are available:
 - **load** visualizes the system load. 1Minute, 5Minute and 15Minute load is distributed onto the three arms
 - **cpu** visualizes the current cpu utilization
 - **memory** visualizes the current memory utilization
+- **temperature** measures and visualizes the current SOC temperature
 - **system** runs all the above modules consecutively
 
 ## Run
@@ -34,7 +35,8 @@ currently the following modules are available:
 $ piglow-load [-i interval] [-b brightness]
 $ piglow-cpu [-i interval] [-b brightness]
 $ piglow-memory [-i interval] [-b brightness]
-$ piglow-system [-lcm] [-i interval] [-b brightness] [-s switchInterval] [-p pause]
+$ piglow-temperature [-i interval] [-b brightness]
+$ piglow-system [-lcmt] [-i interval] [-b brightness] [-s switchInterval] [-p pause]
 ```
 
 All parameters are strictly optional.
@@ -46,7 +48,7 @@ Parameters (all modules):
 
 Parameters (system):
 
-- `lcm`: each letter stands for one of the diagnostic modules. use the parameter to choose which should be used. if ommitted all will be used
+- `lcmt`: each letter stands for one of the diagnostic modules. use the parameter to choose which should be used. if ommitted all will be used
 - `switchInterval`: specifies the time a module call lasts, default: 10000
 - `pause`: specifies the pause time between to module calls, default: 1000
 
