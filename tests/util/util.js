@@ -1,5 +1,20 @@
 var sinon = require('sinon');
 
+function createFSMock(error, results) {
+    var pointer = 0;
+    return {
+        readFile: function(path, callback) {
+            if(error) {
+                callback(error, null);
+            } else {
+                callback(null, results[pointer]);
+            }
+
+            pointer = ++pointer % results.length;
+        }
+    }
+}
+
 function createModuleMock() {
     var started = false;
 
@@ -112,3 +127,4 @@ module.exports.createOsMock = createOsMock;
 module.exports.createCPUMock = createCPUMock;
 module.exports.createModuleMock = createModuleMock;
 module.exports.createSystemMock = createSystemMock;
+module.exports.createFSMock = createFSMock;

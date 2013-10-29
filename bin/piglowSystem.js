@@ -44,6 +44,7 @@ function showHelp(name) {
         '',
         'Modules:',
         '  specify which modules should be rotated by simply providing the initial letter.',
+        '  possible value: c, l, m, t',
         '  if no letter is specified all modules will be used. examples:',
         '    piglow-system -cl <- only shows cpu utilization and system load',
         '    piglow-system -lm <- only shows system load and free memory',

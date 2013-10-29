@@ -32,6 +32,7 @@
     "piglow-load": "bin/piglowLoad.js",
     "piglow-cpu": "bin/piglowCpu.js",
     "piglow-memory": "bin/piglowMemory.js",
+    "piglow-temperature": "bin/piglowTemperature.js",
     "piglow-system": "bin/piglowSystem.js"
   },
   "preferGlobal": true,
