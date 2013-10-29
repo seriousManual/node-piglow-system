@@ -48,7 +48,7 @@ Parameters (all modules):
 
 Parameters (system):
 
-- `lcmt`: each letter stands for one of the diagnostic modules. use the parameter to choose which should be used. if ommitted all will be used
+- `lcmt`: each letter stands for one of the diagnostic modules. use the parameter to choose which should be used. if ommitted all will be used (which does not make too much sense still its obviously difficult to differ between memory usage and temperature, both are quite stable over time)
 - `switchInterval`: specifies the time a module call lasts, default: 10000
 - `pause`: specifies the pause time between to module calls, default: 1000
 
