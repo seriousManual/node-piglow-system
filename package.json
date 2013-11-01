@@ -20,7 +20,8 @@
   "dependencies": {
     "piglow": "~0.6.7",
     "optimist": "~0.6.0",
-    "cputilization": "~0.1.3"
+    "cputilization": "~0.1.3",
+    "ptic": "0.0.3"
   },
   "devDependencies": {
     "mocha": "~1.13.0",
