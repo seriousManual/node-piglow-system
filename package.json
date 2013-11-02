@@ -1,6 +1,6 @@
 {
   "name": "piglow-system",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "several visualisation utilities for your system",
   "author": "Manuel Ernst <zaphod84@gmx.de>",
   "main": "index.js",
@@ -14,7 +14,9 @@
     "piglow",
     "system load",
     "system utilization",
-    "cpu"
+    "cpu",
+    "temperature",
+    "memory"
   ],
   "license": "MIT",
   "dependencies": {
