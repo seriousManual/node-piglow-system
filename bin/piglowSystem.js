@@ -55,9 +55,11 @@ function startup(piglowInterface, options, argv) {
     system.start();
 
     process.on('SIGINT', function end() {
-        system.stop(function() {
+        system.stop();
+
+        setTimeout(function() {
             process.exit();
-        });
+        }, 300);
     });
 }
 
