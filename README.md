@@ -61,14 +61,17 @@ End the process via `ctr+c` or via sending a `SIGINT` signal, it will reset the 
 each of the modules follows the exact same api (load is used as the example):
 
 ```javascript
-var piglowLoad = require('piglow-system').load;
+var Load = require('piglow-system').load;
 
 var options = {
   interval: 1000, //the refresh interval, default:  5000
   brightness: 255 //the maximum brightness, range: 0-255, default: 100
 };
 
-piglowLoad.start(options);
+//inject an piglowinterface here
+var myLoad = new Load(piglowInterface, options)
+
+piglowLoad.start();
 
 process.on('SIGINT', end);
 
