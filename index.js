@@ -1,8 +1,8 @@
-var load = require('./lib/modules/Load_');
-var cpu = require('./lib/modules/Cpu_');
-var memory = require('./lib/modules/Memory_');
-var temperature = require('./lib/modules/Temperature_');
-var system = require('./lib/modules/System_');
+var load = require('./lib/modules/Load');
+var cpu = require('./lib/modules/Cpu');
+var memory = require('./lib/modules/Memory');
+var temperature = require('./lib/modules/Temperature');
+var system = require('./lib/modules/System');
 
 module.exports = {
     load: load,

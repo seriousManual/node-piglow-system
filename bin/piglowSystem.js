@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+var piglow = require('piglow');
+
 var argv = require('optimist').argv;
 var modules = require('../index');
 
