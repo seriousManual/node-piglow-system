@@ -1,10 +1,7 @@
 #!/usr/bin/env node
 
 var argv = require('optimist').argv;
-var piglowSystem = require('../lib/modules/system');
-
-
-var options = {modules: {}};
+var modules = require('../index');
 
 if(argv.v || argv.version) {
     showVersion();
@@ -16,29 +13,57 @@ if(argv.h || argv.help) {
     process.exit(0);
 }
 
-if(argv.l)                        options.modules.l = true;
-if(argv.c)                        options.modules.c = true;
-if(argv.m)                        options.modules.m = true;
+var options = {};
 
 if(argv.i || argv.interval)       options.interval       = argv.i || argv.interval;
 if(argv.b || argv.brightness)     options.brightness     = argv.b || argv.brightness;
 if(argv.p || argv.pause)          options.pause          = argv.p || argv.pause;
 if(argv.s || argv.switchInterval) options.switchInterval = argv.s || argv.switchInterval;
 
-piglowSystem.start(options, function() {});
 
-process.on('SIGINT', function end() {
-    piglowSystem.stop(function() {
-        process.exit();
-    });
+piglow(function(error, piglowInterface) {
+    if(error) {
+        console.log(error.message);
+
+        process.exit(1);
+    }
+
+    startup(piglowInterface, options);
 });
 
+function startup(piglowInterface, options, argv) {
+    var clients = [];
+
+    if(argv.l || argv.c || argv.m || argv.t) {
+        if(argv.l) clients.push(new modules.load(piglowInterface, options));
+        if(argv.c) clients.push(new modules.cpu(piglowInterface, options));
+        if(argv.m) clients.push(new modules.memory(piglowInterface, options));
+        if(argv.t) clients.push(new modules.temperature(piglowInterface, options));
+    } else {
+        clients = [
+            new modules.load(piglowInterface, options),
+            new modules.cpu(piglowInterface, options),
+            new modules.memory(piglowInterface, options),
+            new modules.temperature(piglowInterface, options)
+        ];
+    }
+
+    var system = new modules.system(options, clients);
+
+    system.start();
+
+    process.on('SIGINT', function end() {
+        system.stop(function() {
+            process.exit();
+        });
+    });
+}
 
 function showVersion() {
     console.log(require('../package.json').version);
 }
 
-function showHelp(name) {
+function showHelp() {
     var help = [
         'Usage: piglow-system [modules] [options]',
         '',

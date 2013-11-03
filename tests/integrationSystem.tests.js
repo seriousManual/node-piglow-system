@@ -8,14 +8,13 @@ describe('integrationSystem', function() {
 
     it('should run', function() {
         var clock = sinon.useFakeTimers();
-        var callback = sinon.stub();
 
         var loadMock = testUtils.createModuleMock();
         var cpuMock = testUtils.createModuleMock();
         var memoryMock = testUtils.createModuleMock();
         var temperatureMock = testUtils.createModuleMock();
 
-        var piglowSystem = sandboxed.require('../lib/modules/system', {
+        var System = sandboxed.require('../lib/modules/System', {
             requires: {
                 './memory': memoryMock,
                 './load': loadMock,
@@ -24,20 +23,20 @@ describe('integrationSystem', function() {
             }
         });
 
-        piglowSystem.start({}, callback);
+        var mySystem = new System({}, [loadMock, cpuMock, memoryMock, temperatureMock]);
+
+        mySystem.start();
 
         clock.tick(40000);
-
-        expect(callback.callCount).to.equal(1);
 
         expect(memoryMock.start.callCount).to.equal(1);
         expect(memoryMock.stop.callCount).to.equal(1);
 
         expect(cpuMock.start.callCount).to.equal(1);
-        expect(cpuMock.stop.callCount).to.equal(0);
+        expect(cpuMock.stop.callCount).to.equal(1);
 
         expect(loadMock.start.callCount).to.equal(1);
-        expect(loadMock.stop.callCount).to.equal(1);
+        expect(loadMock.stop.callCount).to.equal(0);
 
         expect(temperatureMock.start.callCount).to.equal(1);
         expect(temperatureMock.stop.callCount).to.equal(1);
@@ -47,14 +46,13 @@ describe('integrationSystem', function() {
 
     it('should run with a switchInterval', function() {
         var clock = sinon.useFakeTimers();
-        var callback = sinon.stub();
 
         var loadMock = testUtils.createModuleMock();
         var cpuMock = testUtils.createModuleMock();
         var memoryMock = testUtils.createModuleMock();
         var temperatureMock = testUtils.createModuleMock();
 
-        var piglowSystem = sandboxed.require('../lib/modules/system', {
+        var System = sandboxed.require('../lib/modules/System', {
             requires: {
                 './memory': memoryMock,
                 './load': loadMock,
@@ -63,20 +61,20 @@ describe('integrationSystem', function() {
             }
         });
 
-        piglowSystem.start({switchInterval:5000}, callback);
+        var mySystem = new System({switchInterval: 5000}, [loadMock, cpuMock, memoryMock, temperatureMock]);
+
+        mySystem.start();
 
         clock.tick(30000);
-
-        expect(callback.callCount).to.equal(1);
 
         expect(memoryMock.start.callCount).to.equal(2);
         expect(memoryMock.stop.callCount).to.equal(1);
 
-        expect(cpuMock.start.callCount).to.equal(1);
-        expect(cpuMock.stop.callCount).to.equal(1);
+        expect(cpuMock.start.callCount).to.equal(2);
+        expect(cpuMock.stop.callCount).to.equal(2);
 
-        expect(loadMock.start.callCount).to.equal(2);
-        expect(loadMock.stop.callCount).to.equal(2);
+        expect(loadMock.start.callCount).to.equal(1);
+        expect(loadMock.stop.callCount).to.equal(1);
 
         expect(temperatureMock.start.callCount).to.equal(1);
         expect(temperatureMock.stop.callCount).to.equal(1);
@@ -86,14 +84,13 @@ describe('integrationSystem', function() {
 
     it('should run with a pauseInterval', function() {
         var clock = sinon.useFakeTimers();
-        var callback = sinon.stub();
 
         var loadMock = testUtils.createModuleMock();
         var cpuMock = testUtils.createModuleMock();
         var memoryMock = testUtils.createModuleMock();
         var temperatureMock = testUtils.createModuleMock();
 
-        var piglowSystem = sandboxed.require('../lib/modules/system', {
+        var System = sandboxed.require('../lib/modules/System', {
             requires: {
                 './memory': memoryMock,
                 './load': loadMock,
@@ -102,20 +99,20 @@ describe('integrationSystem', function() {
             }
         });
 
-        piglowSystem.start({pause: 5000}, callback);
+        var mySystem = new System({pause: 5000}, [loadMock, cpuMock, memoryMock, temperatureMock]);
+
+        mySystem.start();
 
         clock.tick(30000);
-
-        expect(callback.callCount).to.equal(1);
 
         expect(memoryMock.start.callCount).to.equal(1);
         expect(memoryMock.stop.callCount).to.equal(1);
 
-        expect(cpuMock.start.callCount).to.equal(0);
-        expect(cpuMock.stop.callCount).to.equal(0);
+        expect(cpuMock.start.callCount).to.equal(1);
+        expect(cpuMock.stop.callCount).to.equal(1);
 
-        expect(loadMock.start.callCount).to.equal(1);
-        expect(loadMock.stop.callCount).to.equal(1);
+        expect(loadMock.start.callCount).to.equal(0);
+        expect(loadMock.stop.callCount).to.equal(0);
 
         expect(temperatureMock.start.callCount).to.equal(1);
         expect(temperatureMock.stop.callCount).to.equal(0);
@@ -125,15 +122,13 @@ describe('integrationSystem', function() {
 
     it('should run and stop', function() {
         var clock = sinon.useFakeTimers();
-        var callbackStart = sinon.stub();
-        var callbackStop = sinon.stub();
 
         var loadMock = testUtils.createModuleMock();
         var cpuMock = testUtils.createModuleMock();
         var memoryMock = testUtils.createModuleMock();
         var temperatureMock = testUtils.createModuleMock();
 
-        var piglowSystem = sandboxed.require('../lib/modules/system', {
+        var System = sandboxed.require('../lib/modules/System', {
             requires: {
                 './memory': memoryMock,
                 './load': loadMock,
@@ -142,26 +137,25 @@ describe('integrationSystem', function() {
             }
         });
 
-        piglowSystem.start({pause: 5000}, callbackStart);
+        var mySystem = new System({pause: 5000}, [loadMock, cpuMock, memoryMock, temperatureMock]);
+
+        mySystem.start();
 
         clock.tick(30000);
 
-        piglowSystem.stop(callbackStop);
-
-        expect(callbackStart.callCount).to.equal(1);
-        expect(callbackStop.callCount).to.equal(1);
+        mySystem.stop();
 
         expect(memoryMock.start.callCount).to.equal(1);
         expect(memoryMock.stop.callCount).to.equal(1);
 
-        expect(cpuMock.start.callCount).to.equal(0);
-        expect(cpuMock.stop.callCount).to.equal(0);
+        expect(cpuMock.start.callCount).to.equal(1);
+        expect(cpuMock.stop.callCount).to.equal(1);
 
-        expect(loadMock.start.callCount).to.equal(1);
-        expect(loadMock.stop.callCount).to.equal(1);
+        expect(loadMock.start.callCount).to.equal(0);
+        expect(loadMock.stop.callCount).to.equal(0);
 
         expect(temperatureMock.start.callCount).to.equal(1);
-        expect(temperatureMock.stop.callCount).to.equal(1);
+        expect(temperatureMock.stop.callCount).to.equal(0);
 
         clock.restore();
     });

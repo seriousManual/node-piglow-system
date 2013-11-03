@@ -3,4 +3,4 @@
 var piglowMemory = require('../').memory;
 var binRun = require('./generic');
 
-binRun(piglowMemory);
+binRun(piglowMemory, 'memory');

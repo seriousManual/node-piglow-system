@@ -3,4 +3,4 @@
 var piglowLoad = require('../').load;
 var binRun = require('./generic');
 
-binRun(piglowLoad);
+binRun(piglowLoad, 'load');

@@ -3,4 +3,4 @@
 var piglowCpu = require('../').cpu;
 var binRun = require('./generic');
 
-binRun(piglowCpu);
+binRun(piglowCpu, 'cpu');

@@ -3,4 +3,4 @@
 var piglowLoad = require('../').temperature;
 var binRun = require('./generic');
 
-binRun(piglowLoad);
+binRun(piglowLoad, 'temperature');

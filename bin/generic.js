@@ -1,6 +1,7 @@
+var piglow = require('piglow');
 var argv = require('optimist').argv;
 
-function binRun(client) {
+function binRun(ClientClass, name) {
     var options = {};
 
     if(argv.i || argv.interval) {
@@ -17,17 +18,28 @@ function binRun(client) {
     }
 
     if(argv.h || argv.help) {
-        showHelp(client.name);
+        showHelp(name);
         process.exit(0);
     }
 
-    client.start(options, function() {});
+    piglow(function(error, piglowInterface) {
+        if(error) {
+            console.log(error.message);
 
-    process.on('SIGINT', function end() {
-        client.stop(function() {
-            process.exit();
+            process.exit(1);
+        }
+
+        var client = new ClientClass(piglowInterface, options);
+
+        client.start();
+
+        process.on('SIGINT', function end() {
+            client.stop(function() {
+                process.exit();
+            });
         });
     });
+
 }
 
 

@@ -8,18 +8,23 @@ describe('integration Memory', function() {
     it('should run', function() {
         var clock = sinon.useFakeTimers();
         var piGlowMock = testUtils.createPiGlowMock();
-        var callbackCalled = false;
 
-        var piglowMemory = sandboxed.require('../lib/modules/memory', {
+        var Module = sandboxed.require('../lib/modules/Module', {
             requires: {
-                "piglow": testUtils.createCreateInterface(null, piGlowMock),
+                "piglow": testUtils.createCreateInterface()
+            }
+        });
+
+        var Memory = sandboxed.require('../lib/modules/Memory', {
+            requires: {
+                "./Module": Module,
                 "os": testUtils.createOsMock(null, 100, [0, 10, 30, 80])
             }
         });
 
-        piglowMemory.start({interval: 1000, brightness: 23}, function() {
-            callbackCalled = true;
-        });
+        var myMemory = new Memory(piGlowMock, {interval: 1000, brightness: 23});
+
+        myMemory.start();
 
         expect(piGlowMock.data()).to.deep.equal( {
             l_0_0: 0, l_0_1: 0, l_0_2: 0, l_0_3: 0, l_0_4: 0, l_0_5: 0,
@@ -51,24 +56,7 @@ describe('integration Memory', function() {
             l_2_0: 7, l_2_1: 23, l_2_2: 23, l_2_3: 23, l_2_4: 23, l_2_5: 23
         });
 
-        expect(callbackCalled).to.be.true;
-
         clock.restore();
     });
 
-    it('should fail', function(done) {
-        var piglowMemory = sandboxed.require('../lib/modules/cpu', {
-            requires: {
-                "piglow": testUtils.createCreateInterface(new Error('foo')),
-                "os": testUtils.createOsMock(null, 100, [10, 30, 80])
-            }
-        });
-
-        piglowMemory.start({interval: 1000, brightness: 23}, function(error) {
-            expect(error).not.to.be.null;
-            expect(error.message).to.equal('foo');
-
-            done();
-        });
-    });
 });

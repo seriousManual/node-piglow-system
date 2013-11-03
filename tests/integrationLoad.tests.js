@@ -9,11 +9,16 @@ describe('integrationLoad', function() {
     it('should run', function() {
         var clock = sinon.useFakeTimers();
         var piGlowMock = testUtils.createPiGlowMock();
-        var callbackCalled = false;
 
-        var piglowLoad = sandboxed.require('../lib/modules/load', {
+        var Module = sandboxed.require('../lib/modules/Module', {
             requires: {
-                "piglow": testUtils.createCreateInterface(null, piGlowMock),
+                "piglow": testUtils.createCreateInterface()
+            }
+        });
+
+        var Load = sandboxed.require('../lib/modules/Load', {
+            requires: {
+                "./Module": Module,
                 "os": testUtils.createOsMock([
                     [0.11, 0.31, 0.46],
                     [0.31, 0.46, 0.61],
@@ -22,9 +27,9 @@ describe('integrationLoad', function() {
             }
         });
 
-        piglowLoad.start({interval: 1000, brightness: 23}, function() {
-            callbackCalled = true;
-        });
+        var myLoad = new Load(piGlowMock, {interval: 1000, brightness: 23});
+
+        myLoad.start();
 
         expect(piGlowMock.data()).to.deep.equal( {
             l_0_0: 0, l_0_1: 0, l_0_2: 0, l_0_3: 0, l_0_4: 0, l_0_5: 16,
@@ -48,28 +53,7 @@ describe('integrationLoad', function() {
             l_2_0: 1, l_2_1: 23, l_2_2: 23, l_2_3: 23, l_2_4: 23, l_2_5: 23
         });
 
-        expect(callbackCalled).to.be.true;
-
         clock.restore();
     });
 
-    it('should fail', function(done) {
-        var piglowLoad = sandboxed.require('../lib/modules/load', {
-            requires: {
-                "piglow": testUtils.createCreateInterface(new Error('foo')),
-                "os": testUtils.createOsMock([
-                    [0.11, 0.31, 0.46],
-                    [0.31, 0.46, 0.61],
-                    [0.46, 0.61, 0.76]
-                ])
-            }
-        });
-
-        piglowLoad.start({interval: 1000, brightness: 23}, function(error) {
-            expect(error).not.to.be.null;
-            expect(error.message).to.equal('foo');
-
-            done();
-        });
-    });
 });

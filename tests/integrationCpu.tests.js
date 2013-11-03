@@ -8,18 +8,23 @@ describe('integrationCpu', function() {
     it('should run', function() {
         var clock = sinon.useFakeTimers();
         var piGlowMock = testUtils.createPiGlowMock();
-        var callbackCalled = false;
 
-        var piglowCpu = sandboxed.require('../lib/modules/cpu', {
+        var Module = sandboxed.require('../lib/modules/Module', {
             requires: {
-                "piglow": testUtils.createCreateInterface(null, piGlowMock),
+                "piglow": testUtils.createCreateInterface()
+            }
+        });
+
+        var Cpu = sandboxed.require('../lib/modules/Cpu', {
+            requires: {
+                "./Module": Module,
                 "cputilization": testUtils.createCPUMock([0.1, 0.3, 0.5, 0.9])
             }
         });
 
-        piglowCpu.start({interval: 1000, brightness: 23}, function() {
-            callbackCalled = true;
-        });
+        var myCpu = new Cpu(piGlowMock, {interval: 1000, brightness: 23});
+
+        myCpu.start();
 
         clock.tick(1000);
 
@@ -53,24 +58,6 @@ describe('integrationCpu', function() {
             l_2_0: 23, l_2_1: 23, l_2_2: 23, l_2_3: 23, l_2_4: 23, l_2_5: 23
         });
 
-        expect(callbackCalled).to.be.true;
-
         clock.restore();
-    });
-
-    it('should fail', function(done) {
-        var piglowCpu = sandboxed.require('../lib/modules/cpu', {
-            requires: {
-                "piglow": testUtils.createCreateInterface(new Error('foo')),
-                "cputilization": testUtils.createCPUMock([0.1, 0.3, 0.5, 0.9])
-            }
-        });
-
-        piglowCpu.start({interval: 1000, brightness: 23}, function(error) {
-            expect(error).not.to.be.null;
-            expect(error.message).to.equal('foo');
-
-            done();
-        });
     });
 });

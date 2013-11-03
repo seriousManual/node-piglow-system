@@ -16,18 +16,9 @@ function createFSMock(error, results) {
 }
 
 function createModuleMock() {
-    var started = false;
-
     return {
-        start: sinon.spy(function(o, callback) {
-            if(!started) {
-                started = true;
-                callback();
-            }
-        }),
-        stop: sinon.spy(function(callback) {
-            callback();
-        })
+        start: sinon.spy(),
+        stop: sinon.spy()
     };
 }
 
@@ -43,7 +34,8 @@ function createCPUMock(samples) {
         _handler: null,
         on: function(type, handler) {
             this._handler = handler;
-        }
+        },
+        start: function() {}
     };
 
     return function(o) {
