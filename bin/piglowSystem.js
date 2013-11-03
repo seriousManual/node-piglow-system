@@ -30,7 +30,7 @@ piglow(function(error, piglowInterface) {
         process.exit(1);
     }
 
-    startup(piglowInterface, options);
+    startup(piglowInterface, options, argv);
 });
 
 function startup(piglowInterface, options, argv) {
