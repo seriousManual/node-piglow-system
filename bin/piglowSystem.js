@@ -19,9 +19,10 @@ var options = {};
 
 if(argv.i || argv.interval)       options.interval       = argv.i || argv.interval;
 if(argv.b || argv.brightness)     options.brightness     = argv.b || argv.brightness;
-if(argv.p || argv.pause)          options.pause          = argv.p || argv.pause;
 if(argv.s || argv.switchInterval) options.switchInterval = argv.s || argv.switchInterval;
 if(argv.d || argv.debug)          options.debug          = true;
+if(argv.p !== undefined)          options.pause          = +argv.p;
+if(argv.pause !== undefined)      options.pause          = +argv.pause;
 
 piglow(function(error, piglowInterface) {
     if(error) {
