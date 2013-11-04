@@ -9,10 +9,10 @@ describe('integrationSystem', function() {
     it('should run', function() {
         var clock = sinon.useFakeTimers();
 
-        var loadMock = testUtils.createModuleMock();
-        var cpuMock = testUtils.createModuleMock();
-        var memoryMock = testUtils.createModuleMock();
-        var temperatureMock = testUtils.createModuleMock();
+        var loadMock = testUtils.createModuleMock('load');
+        var cpuMock = testUtils.createModuleMock('cpu');
+        var memoryMock = testUtils.createModuleMock('memory');
+        var temperatureMock = testUtils.createModuleMock('temperature');
 
         var System = sandboxed.require('../lib/modules/System', {
             requires: {
@@ -47,10 +47,10 @@ describe('integrationSystem', function() {
     it('should run with a switchInterval', function() {
         var clock = sinon.useFakeTimers();
 
-        var loadMock = testUtils.createModuleMock();
-        var cpuMock = testUtils.createModuleMock();
-        var memoryMock = testUtils.createModuleMock();
-        var temperatureMock = testUtils.createModuleMock();
+        var loadMock = testUtils.createModuleMock('load');
+        var cpuMock = testUtils.createModuleMock('cpu');
+        var memoryMock = testUtils.createModuleMock('memory');
+        var temperatureMock = testUtils.createModuleMock('temperature');
 
         var System = sandboxed.require('../lib/modules/System', {
             requires: {
@@ -85,10 +85,10 @@ describe('integrationSystem', function() {
     it('should run with a pauseInterval', function() {
         var clock = sinon.useFakeTimers();
 
-        var loadMock = testUtils.createModuleMock();
-        var cpuMock = testUtils.createModuleMock();
-        var memoryMock = testUtils.createModuleMock();
-        var temperatureMock = testUtils.createModuleMock();
+        var loadMock = testUtils.createModuleMock('load');
+        var cpuMock = testUtils.createModuleMock('cpu');
+        var memoryMock = testUtils.createModuleMock('memory');
+        var temperatureMock = testUtils.createModuleMock('temperature');
 
         var System = sandboxed.require('../lib/modules/System', {
             requires: {
@@ -123,10 +123,10 @@ describe('integrationSystem', function() {
     it('should run and stop', function() {
         var clock = sinon.useFakeTimers();
 
-        var loadMock = testUtils.createModuleMock();
-        var cpuMock = testUtils.createModuleMock();
-        var memoryMock = testUtils.createModuleMock();
-        var temperatureMock = testUtils.createModuleMock();
+        var loadMock = testUtils.createModuleMock('load');
+        var cpuMock = testUtils.createModuleMock('cpu');
+        var memoryMock = testUtils.createModuleMock('memory');
+        var temperatureMock = testUtils.createModuleMock('temperature');
 
         var System = sandboxed.require('../lib/modules/System', {
             requires: {
@@ -145,17 +145,17 @@ describe('integrationSystem', function() {
 
         mySystem.stop();
 
-        expect(memoryMock.start.callCount).to.equal(1);
-        expect(memoryMock.stop.callCount).to.equal(1);
-
         expect(cpuMock.start.callCount).to.equal(1);
         expect(cpuMock.stop.callCount).to.equal(1);
 
-        expect(loadMock.start.callCount).to.equal(0);
-        expect(loadMock.stop.callCount).to.equal(0);
+        expect(memoryMock.start.callCount).to.equal(1);
+        expect(memoryMock.stop.callCount).to.equal(1);
 
         expect(temperatureMock.start.callCount).to.equal(1);
-        expect(temperatureMock.stop.callCount).to.equal(0);
+        expect(temperatureMock.stop.callCount).to.equal(1);
+
+        expect(loadMock.start.callCount).to.equal(0);
+        expect(loadMock.stop.callCount).to.equal(0);
 
         clock.restore();
     });

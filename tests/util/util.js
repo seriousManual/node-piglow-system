@@ -15,10 +15,11 @@ function createFSMock(error, results) {
     }
 }
 
-function createModuleMock() {
+function createModuleMock(name) {
     return {
         start: sinon.spy(),
-        stop: sinon.spy()
+        stop: sinon.spy(),
+        name: function() { return name; }
     };
 }
 
