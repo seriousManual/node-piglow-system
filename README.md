@@ -87,3 +87,4 @@ function end() {
 - **node-piglow** https://github.com/zaphod1984/node-piglow
 - **optimist** https://github.com/substack/node-optimist
 - **cputilization** https://github.com/zaphod1984/cputilization
+- **ptic** https://github.com/zaphod1984/node-ptic
