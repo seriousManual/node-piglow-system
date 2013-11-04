@@ -21,7 +21,7 @@ if(argv.i || argv.interval)       options.interval       = argv.i || argv.interv
 if(argv.b || argv.brightness)     options.brightness     = argv.b || argv.brightness;
 if(argv.p || argv.pause)          options.pause          = argv.p || argv.pause;
 if(argv.s || argv.switchInterval) options.switchInterval = argv.s || argv.switchInterval;
-
+if(argv.d || argv.debug)          options.debug          = true;
 
 piglow(function(error, piglowInterface) {
     if(error) {
