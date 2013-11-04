@@ -45,6 +45,7 @@ Parameters (all modules):
 
 - `interval`: specifies the refresh interval in milliseconds. default: 5000ms
 - `brightness`: specifies how bright the LED should shine. range: 0-255, default: 10 (fyi: 255 is freakin' bright)
+- `debug`: enables debugging messages to the console, default: false
 
 Parameters (system):
 
@@ -60,28 +61,33 @@ End the process via `ctr+c` or via sending a `SIGINT` signal, it will reset the 
 
 each of the modules follows the exact same api (load is used as the example):
 
-```javascript
+````javascript
+var piglow = require('piglow');
 var Load = require('piglow-system').load;
 
 var options = {
-  interval: 1000, //the refresh interval, default:  5000
-  brightness: 255 //the maximum brightness, range: 0-255, default: 100
+  interval: 1000,  //the refresh interval, default:  5000
+  brightness: 255, //the maximum brightness, range: 0-255, default: 100
+  debug: false     //debugging, default: false
 };
 
-//inject an piglowinterface here
-var myLoad = new Load(piglowInterface, options)
+piglow(function(error, piglowInterface) {
+    if(error) {
+        console.log(error.message);
+        process.exit(1);
+    }
 
-piglowLoad.start();
+    var myLoad = new Load(piglowInterface, options);
 
-process.on('SIGINT', end);
+    myLoad.start();
 
-function end() {
-    //resets all leds
-    piglowLoad.stop(function() {
-        process.exit();
+    process.on('SIGINT', function end() {
+        myLoad.stop(function() {
+            process.exit();
+        });
     });
-}
-```
+});
+````
 
 ## made with
 - **node-piglow** https://github.com/zaphod1984/node-piglow
