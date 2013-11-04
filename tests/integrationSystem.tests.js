@@ -61,7 +61,7 @@ describe('integrationSystem', function() {
             }
         });
 
-        var mySystem = new System({switchInterval: 5000}, [loadMock, cpuMock, memoryMock, temperatureMock]);
+        var mySystem = new System({ switchInterval: 5000}, [loadMock, cpuMock, memoryMock, temperatureMock]);
 
         mySystem.start();
 
@@ -99,7 +99,7 @@ describe('integrationSystem', function() {
             }
         });
 
-        var mySystem = new System({pause: 5000}, [loadMock, cpuMock, memoryMock, temperatureMock]);
+        var mySystem = new System({ pause: 5000}, [loadMock, cpuMock, memoryMock, temperatureMock]);
 
         mySystem.start();
 
@@ -137,7 +137,7 @@ describe('integrationSystem', function() {
             }
         });
 
-        var mySystem = new System({pause: 5000}, [loadMock, cpuMock, memoryMock, temperatureMock]);
+        var mySystem = new System({ pause: 5000}, [loadMock, cpuMock, memoryMock, temperatureMock]);
 
         mySystem.start();
 
