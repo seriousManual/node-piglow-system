@@ -35,7 +35,6 @@ function binRun(ClientClass, name) {
             });
         });
     });
-
 }
 
 
