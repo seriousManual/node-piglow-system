@@ -20,7 +20,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "piglow": "~0.8.3",
+    "piglow": "~0.10.0",
     "optimist": "~0.6.0",
     "cputilization": "~0.2.0",
     "ptic": "~0.1.0",
