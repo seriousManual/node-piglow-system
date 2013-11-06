@@ -23,7 +23,8 @@
     "piglow": "~0.8.3",
     "optimist": "~0.6.0",
     "cputilization": "~0.2.0",
-    "ptic": "~0.1.0"
+    "ptic": "~0.1.0",
+    "depugger": "0.0.3"
   },
   "devDependencies": {
     "mocha": "~1.13.0",
