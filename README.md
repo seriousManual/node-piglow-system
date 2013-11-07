@@ -43,7 +43,7 @@ All parameters are strictly optional.
 
 Parameters (all modules):
 
-- `interval`: specifies the refresh interval in milliseconds. default: 1000ms
+- `interval`: specifies the refresh interval in milliseconds. be careful as a low specification (< 100ms) could cause the system load/cpu utilization to increase. default: 1000ms
 - `brightness`: specifies how bright the LED should shine. range: 0-255, default: 10 (fyi: 255 is freakin' bright)
 - `debug`: enables debugging messages to the console, default: false
 
