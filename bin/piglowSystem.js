@@ -85,6 +85,7 @@ function showHelp() {
         '  -s, --switchInterval:  the time a certain module should be shown in ms (default: 10000)',
         '  -p, --pause:           pause between transitions in ms (default: 1000)',
         '  -v, --version:         the version of piglow-system',
+        '  -d, --debug:           activate debug output',
         '  -h, --help:            this help'
     ];
 

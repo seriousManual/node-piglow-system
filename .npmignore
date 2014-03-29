@@ -1,2 +1,4 @@
 .travis.yml
 TODO.md
+node_modules
+.idea
