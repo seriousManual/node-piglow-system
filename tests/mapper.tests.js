@@ -38,12 +38,23 @@ describe('mapper', function() {
         });
     });
 
-    it('should set LEDs 0.31', function() {
+    it('should set very low values', function() {
+        var piGlowMock = testUtils.createPiGlowMock();
+        mapper(0, 0.00000000001, 10, piGlowMock);
+
+        expect(piGlowMock.data()).to.deep.equal({
+            l_0_0: 0, l_0_1: 0, l_0_2: 0, l_0_3: 0, l_0_4: 0, l_0_5: 1,
+            l_1_0: 0, l_1_1: 0, l_1_2: 0, l_1_3: 0, l_1_4: 0, l_1_5: 0,
+            l_2_0: 0, l_2_1: 0, l_2_2: 0, l_2_3: 0, l_2_4: 0, l_2_5: 0
+        });
+    });
+
+    it('should set LEDs to 0.31', function() {
         var piGlowMock = testUtils.createPiGlowMock();
         mapper(0, 0.31, 10, piGlowMock);
 
         expect(piGlowMock.data()).to.deep.equal({
-            l_0_0: 0, l_0_1: 0, l_0_2: 0, l_0_3: 0, l_0_4: 10, l_0_5: 10,
+            l_0_0: 0, l_0_1: 0, l_0_2: 0, l_0_3: 1, l_0_4: 10, l_0_5: 10,
             l_1_0: 0, l_1_1: 0, l_1_2: 0, l_1_3: 0, l_1_4: 0, l_1_5: 0,
             l_2_0: 0, l_2_1: 0, l_2_2: 0, l_2_3: 0, l_2_4: 0, l_2_5: 0
         });
