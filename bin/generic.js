@@ -1,5 +1,5 @@
 var piglow = require('piglow');
-var argv = require('optimist').argv;
+var argv = require('yargs').argv;
 
 function binRun(ClientClass, name) {
     if(argv.v || argv.version) {

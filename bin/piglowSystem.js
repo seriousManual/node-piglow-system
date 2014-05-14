@@ -2,7 +2,7 @@
 
 var piglow = require('piglow');
 
-var argv = require('optimist').argv;
+var argv = require('yargs').argv;
 var modules = require('../index');
 
 if(argv.v || argv.version) {

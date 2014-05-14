@@ -21,10 +21,10 @@
   "license": "MIT",
   "dependencies": {
     "piglow": ">=2.0.0 <= 3.0.0",
-    "optimist": "~0.6.0",
     "cputilization": "~0.2.0",
-    "ptic": "~0.1.0",
-    "depugger": "0.0.3"
+    "ptic": "~0.3.1",
+    "depugger": "~0.2.4",
+    "yargs": "~1.2.1"
   },
   "devDependencies": {
     "mocha": "~1.13.0",
