@@ -16,10 +16,10 @@ describe('integrationSystem', function() {
 
         var System = sandboxed.require('../lib/modules/System', {
             requires: {
-                './memory': memoryMock,
-                './load': loadMock,
-                './cpu': cpuMock,
-                './temperature': temperatureMock
+                './Memory': memoryMock,
+                './Load': loadMock,
+                './Cpu': cpuMock,
+                './Temperature': temperatureMock
             }
         });
 
@@ -54,10 +54,10 @@ describe('integrationSystem', function() {
 
         var System = sandboxed.require('../lib/modules/System', {
             requires: {
-                './memory': memoryMock,
-                './load': loadMock,
-                './cpu': cpuMock,
-                './temperature': temperatureMock
+                './Memory': memoryMock,
+                './Load': loadMock,
+                './Cpu': cpuMock,
+                './Temperature': temperatureMock
             }
         });
 
@@ -92,10 +92,10 @@ describe('integrationSystem', function() {
 
         var System = sandboxed.require('../lib/modules/System', {
             requires: {
-                './memory': memoryMock,
-                './load': loadMock,
-                './cpu': cpuMock,
-                './temperature': temperatureMock
+                './Memory': memoryMock,
+                './Load': loadMock,
+                './Cpu': cpuMock,
+                './Temperature': temperatureMock
             }
         });
 
@@ -130,10 +130,10 @@ describe('integrationSystem', function() {
 
         var System = sandboxed.require('../lib/modules/System', {
             requires: {
-                './memory': memoryMock,
-                './load': loadMock,
-                './cpu': cpuMock,
-                './temperature': temperatureMock
+                './Memory': memoryMock,
+                './Load': loadMock,
+                './Cpu': cpuMock,
+                './Temperature': temperatureMock
             }
         });
 
