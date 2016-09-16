@@ -1,6 +1,4 @@
-# node-piglow-system
-
-[![Build Status](https://travis-ci.org/zaphod1984/node-piglow-system.png)](https://travis-ci.org/zaphod1984/node-piglow-system)
+# node-piglow-system [![Build Status](https://travis-ci.org/seriousManual/node-piglow-system.png)](https://travis-ci.org/seriousManual/node-piglow-system)
 
 [![NPM](https://nodei.co/npm/piglow-system.png)](https://nodei.co/npm/piglow-system/)
 
