@@ -22,7 +22,7 @@
   "dependencies": {
     "cputilization": "^1.0.0",
     "depugger": "^1.0.0",
-    "piglow": "^2.2.0",
+    "piglow": "^3",
     "ptic": "^1.0.0",
     "yargs": "^1.3.3"
   },
@@ -42,5 +42,8 @@
   "preferGlobal": true,
   "scripts": {
     "test": "./node_modules/.bin/mocha tests"
+  },
+  "engine": {
+    "node": ">=4"
   }
 }
