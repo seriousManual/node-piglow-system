@@ -24,7 +24,7 @@
     "depugger": "^1.0.0",
     "piglow": "^3",
     "ptic": "^1.0.0",
-    "yargs": "^5.0.0"
+    "yargs": "^6.3.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
