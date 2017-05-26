@@ -30,7 +30,7 @@
     "chai": "^3.5.0",
     "mocha": "^3.0.2",
     "sandboxed-module": "^2.0.3",
-    "sinon": "^1.12.2"
+    "sinon": "^2.3.2"
   },
   "bin": {
     "piglow-load": "bin/piglowLoad.js",
